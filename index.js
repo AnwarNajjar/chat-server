@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     console.log(`${chalk.hex('#ff3245')('disconnect:')} ${chalk.yellow(socket.id)} ${logSymbols.error}`, '\n');
   })
   socket.on('message', (x) => {
-    socket.in(x.room).emit('message', x)
+    socket.in(x.room).emit('message', {"message":x,"room_info":io.sockets.adapter.rooms.get(x.room).size})
   })
   socket.on('file_size', (x) => {
     socket.in(x.room).emit('file_size', x)
